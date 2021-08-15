@@ -9,7 +9,7 @@ test('App snapshot test', () => {
   expect(tree).toMatchSnapshot();
 })
 
-test('renders learn react link', () => {
+test('Checks if there is a learn react string', () => {
   render(<App />);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
