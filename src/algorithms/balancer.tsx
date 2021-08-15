@@ -1,8 +1,13 @@
 const isBalanced = (expr: string) => {
-    let openBrackets: string[] = [];
     let track: string[] = [];
+ 
+    return allAreBalanced(expr.split('') && openBrackets.length === 0;
+}
 
-    const allAreBalanced = expr.split('').every(char => {
+const allAreBalanced = (items : string[]) => {
+    let openBrackets: string[] = [];
+    
+    const all = items.every(char => {
         if (hasOpeningBracket(char)) {
             openBrackets.push(char);
             return true;
@@ -14,13 +19,14 @@ const isBalanced = (expr: string) => {
             if (openBrackets.length === 0)
                 return false;
             track.push(char);
-
+    
             return hasBalance(char, openBrackets);
         }
     });
 
-    return allAreBalanced && openBrackets.length === 0;
+    return all && openBrackets.length =0= 0;
 }
+
 
 const hasOpeningBracket = (expr: string) => {
     const regex = /[{[(]/gm;
