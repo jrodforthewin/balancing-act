@@ -1,16 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import renderer from 'react-test-renderer';
+import userEvent from '@testing-library/user-event';
 import App from '../components/App';
 
-test('App snapshot test', () => {
-  const component = renderer.create(<App />);
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-})
+describe('Tests UI', () => {
 
-test('Checks if there is a learn react string', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  test('Checks if there is a "is it balanced" string', () => {
+    render(<App />);
+    const linkElement = screen.getByText(/is it balanced/i);
+    expect(linkElement).toBeInTheDocument();
+  });
+
+  test('We typed something', () => {
+    render(<App />);
+    const input = screen.getByTestId("balancer-input");
+    userEvent.type(input, "()");
+    const output = screen.getByTestId("balancer-output");
+    expect(output).toHaveTextContent(/Yes/);
+  })
 });

@@ -1,6 +1,5 @@
 
-import React, {useRef, useState} from 'react';
-import logo from './logo.svg';
+import React, { useRef, useState } from 'react';
 import './App.css';
 import isBalanced from '../algorithms/balancer';
 
@@ -8,7 +7,7 @@ function App() {
   const textRef = useRef("");
   const [balancedResponse, setBalanced] = useState("");
 
-  const submit = (e) => {
+  const handleChange = (e) => {
     e.preventDefault();
     const textVal = textRef.current.value;
     setBalanced(isBalanced(textVal));
@@ -17,13 +16,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <form onSubmit={submit}>
-       <input ref={textRef} type="text" onChange={submit}></input>
-       <button>Send Ref</button>
-       </form>
-       <h3>My app</h3>
-       <div>{balancedResponse? "Yes" : "No"}</div>
-       Learn react
+        <input ref={textRef} data-testid="balancer-input" type="text" onChange={handleChange}></input>
+        <h3>Is it Balanced?</h3>
+        <div data-testid="balancer-output">{balancedResponse ? "Yes" : "No"}</div>
       </header>
     </div>
   );
