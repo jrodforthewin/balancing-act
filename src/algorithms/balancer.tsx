@@ -7,7 +7,7 @@ const validateAndRemoveCommas = (expr: string) => {
     const spacesRemoved = expr.replace(/\s/g, '');
     let items: string[] = [];
 
-    const all = spacesRemoved.split('').every(char => {
+    const allAreAfterClosingBrackets = spacesRemoved.split('').every(char => {
         let valid = false;
         if (!hasCsv(char))
             valid = true;
@@ -20,7 +20,7 @@ const validateAndRemoveCommas = (expr: string) => {
         return valid;
     })
 
-    return all ? spacesRemoved.replace(/,/g, '') : undefined;
+    return allAreAfterClosingBrackets ? spacesRemoved.replace(/,/g, '') : undefined;
 }
 
 const allAreBalanced = (items: string[]) => {
@@ -31,17 +31,14 @@ const allAreBalanced = (items: string[]) => {
             openBrackets.push(char);
             return true;
         }
-        else {
-            if (openBrackets.length === 0)
-                return false;
+        if (openBrackets.length === 0)
+            return false;
 
-            return hasBalance(char, openBrackets);
-        }
+        return hasBalance(char, openBrackets);
     });
 
     return all && openBrackets.length === 0;
 }
-
 
 const hasOpeningBracket = (expr: string) => {
     const regex = /[{[(]/gm;
@@ -54,7 +51,7 @@ const hasClosingBracket = (expr: string) => {
 }
 
 const hasCsv = (expr: string) => {
-    const regex = /[, ]/gm;
+    const regex = /[,]/gm;
     return regex.exec(expr) != null;
 };
 

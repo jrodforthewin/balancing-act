@@ -11,11 +11,18 @@ describe('Tests UI', () => {
     expect(linkElement).toBeInTheDocument();
   });
 
-  test('We typed something', () => {
+  test('It should say yes', () => {
     render(<App />);
     const input = screen.getByTestId("balancer-input");
     userEvent.type(input, "()");
     const output = screen.getByTestId("balancer-output");
     expect(output).toHaveTextContent(/Yes/);
-  })
+  });
+  test('It should say no', () => {
+    render(<App />);
+    const input = screen.getByTestId("balancer-input");
+    userEvent.type(input, "([");
+    const output = screen.getByTestId("balancer-output");
+    expect(output).toHaveTextContent(/No/);
+  });
 });
