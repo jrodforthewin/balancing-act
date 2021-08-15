@@ -5,23 +5,18 @@ import userEvent from '@testing-library/user-event';
 import App from '../../components/App';
 
 describe('<App />', () => {
-  test('Checks if there is a "is it balanced" string', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/is it balanced/i);
-    expect(linkElement).toBeInTheDocument();
-  });
-  test('It should say yes', () => {
+  test('It should be balanced', () => {
     render(<App />);
     const input = screen.getByTestId('balancer-input');
     userEvent.type(input, '()');
-    const output = screen.getByTestId('balancer-output');
-    expect(output).toHaveTextContent(/Yes/);
+    const output = screen.findByTestId('balanced');
+    expect(output).toBeTruthy();
   });
-  test('It should say no', () => {
+  test('It should not be balanced', () => {
     render(<App />);
     const input = screen.getByTestId('balancer-input');
     userEvent.type(input, '([');
-    const output = screen.getByTestId('balancer-output');
-    expect(output).toHaveTextContent(/No/);
+    const output = screen.findByTestId('not-balanced');
+    expect(output).toBeTruthy();
   });
 });
