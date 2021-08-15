@@ -1,7 +1,27 @@
 const isBalanced = (expr: string) => {
-    let track: string[] = [];
- 
-    return allAreBalanced(expr.split('') && openBrackets.length === 0;
+    const withoutCommas = validateAndRemoveCommas(expr);
+    return withoutCommas != null && allAreBalanced(withoutCommas.split(''));
+}
+
+const validateAndRemoveCommas = (expr: string) => {
+    const spacesRemoved = expr.replace(/\s/g, '');
+    let items :string[] = [];
+
+    const all = spacesRemoved.split('').every(char => {
+        let valid = false;
+        if(!hasCsv(char))
+            valid = true;
+        else
+        {
+            const lastItem = items.pop() || "";
+            if(hasClosingBracket(lastItem))
+                valid = true;
+        }
+        items.push(char);
+        return valid;
+    })
+
+    return all ? spacesRemoved.replace(/,/g,'') : undefined;
 }
 
 const allAreBalanced = (items : string[]) => {
@@ -12,19 +32,15 @@ const allAreBalanced = (items : string[]) => {
             openBrackets.push(char);
             return true;
         }
-        else if (hasCsv(char)) {
-            return wasClosing(char, track);
-        }
         else {
             if (openBrackets.length === 0)
                 return false;
-            track.push(char);
     
             return hasBalance(char, openBrackets);
         }
     });
 
-    return all && openBrackets.length =0= 0;
+    return all && openBrackets.length === 0;
 }
 
 
