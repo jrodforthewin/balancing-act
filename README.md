@@ -3,9 +3,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This app is just intended to thest if brackets are balanced
 
-**Example**
-`{[{}{}]}[()], {{}{}}, []{}()` will evaluate to true &
-`{()}[), {(})` will evaluate to false
+## Pass
+```{[{}{}]}[()], {{}{}}, []{}()``` 
+
+## Fail
+```{()}[), {(})```
 
 ## Available Scripts
 
