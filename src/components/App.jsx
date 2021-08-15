@@ -15,8 +15,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input ref={textRef} data-testid="balancer-input" type="text" onChange={handleChange} />
         <h3>Is it Balanced?</h3>
+        <input ref={textRef} data-testid="balancer-input" type="text" onChange={handleChange} />
         <div data-testid="balancer-output">{balancedResponse ? 'Yes' : 'No'}</div>
       </header>
     </div>
