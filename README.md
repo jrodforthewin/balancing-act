@@ -3,10 +3,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This app is just intended to thest if brackets are balanced
 
-## Pass
+### Pass
 ```{[{}{}]}[()], {{}{}}, []{}()``` 
 
-## Fail
+### Fail
 ```{()}[), {(})```
 
 ## Available Scripts
